@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="flex flex-col justify-between fixed top-0 left-0 transition-all duration-200 ease-in-out h-screen z-0 bg-gray-100 border-r-2 border-slate-300 text-xs"
-            :class="[$store.state.SideBarCollapsed ? 'w-12' : 'lg:w-64 sm:flex hidden']">
+        <div class="flex flex-col sm:flex hidden justify-between fixed top-0 left-0 transition-all duration-200 ease-in-out h-screen z-0 bg-gray-100 border-r-2 border-slate-300 text-xs"
+            :class="[$store.state.SideBarCollapsed ? 'w-12' : 'lg:w-64']">
             <div class="mt-20 flex-col">
                 <div
                     class="rounded-lg hover:bg-gray-200 p-1.5 mr-1 ml-3 mb-2 font-bold h-8 cursor-pointer flex flex-row justify-start">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div @click="ToggleSideBar" class="p-2 cursor-pointer text-sm bg-gray-100 hover:bg-gray-200">
-                <div v-if="!$store.state.SideBarCollapsed" class="lg:block hidden">Collapse sideBar</div>
+                <div v-if="!$store.state.SideBarCollapsed" class="lg:block hidden">&#60;&#60; Collapse sidebar</div>
                 <div v-else>>></div>
             </div>
         </div>
