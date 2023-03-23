@@ -1,9 +1,9 @@
 <template>
     <div class="text-xs flex flex-row justify-between w-full h-22 rounded border-b-2 border-gray-100">
-        <div class="flex-none flex items-center m-3 rounded-lg border-2 border-gray-100">
+        <div class="flex-none w-14 h-14 flex items-center m-3 rounded-lg border-2 border-gray-100">
             <a :href="repoUrl"><img v-if="imgUrl" :src="imgUrl"
                     class="w-14 h-14 flex justify-center items-center rounded-lg" />
-                <div v-else class="w-14 h-14 text-3xl flex justify-center items-center rounded-lg" :class="getColor">{{
+                <div v-else class="w-14 h-14 text-2xl text-center flex justify-center items-center rounded-lg" :class="getColor">{{
                     getCharacter(nameSpace) }}</div>
             </a>
         </div>
@@ -79,7 +79,7 @@ export default {
         getColor() {
             var color = ["bg-"]
             const colors = ["red", "purple", "pink", "green", "blue", "yellow", "indigo", "emerald", "teal", "cyan", "sky", "violet", "fuchsia", "rose"]
-            const scale = [100, 200, 300]
+            const scale = ["100/25", "100/50", "100/75"]
             color.push(colors[parseInt(Math.random() * (colors.length - 1))])
             color.push("-")
             color.push(scale[parseInt(Math.random() * (scale.length - 1))])
