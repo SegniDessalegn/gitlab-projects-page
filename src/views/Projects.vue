@@ -34,10 +34,21 @@
         </div>
         <div class="sm:mt-5 mt-5 mr-5 text-slate-500 sm:ml-20 ml-0 p-5 sm:p-1"
             :class="[$store.state.SideBarCollapsed ? 'ml-20' : 'lg:ml-72']">
-            <div v-for="project in $store.state.projects" :id="project.id" class="">
-                <Project :nameSpace="project.name_with_namespace" :repoUrl="project.http_url_to_repo"
-                    :imgUrl="project.avatar_url" :discription="project.description" :stars="project.star_count"
-                    :forks="project.forks_count" pullRequest="0" issues="0" lastUpdated="Updated just now" />
+            <div v-if="$store.state.projects.length != 0">
+                <div v-for="project in $store.state.projects" :id="project.id" class="">
+                    <Project :nameSpace="project.name_with_namespace" :repoUrl="project.http_url_to_repo"
+                        :imgUrl="project.avatar_url" :discription="project.description" :stars="project.star_count"
+                        :forks="project.forks_count" pullRequest="0" issues="0" lastUpdated="Updated just now" />
+                </div>
+            </div>
+            <div v-else class="sm:mt-36 mt-20 flex flex-col justify-center items-center">
+                <div class="flex items-center justify-center">
+                    <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                        role="status">
+                        <span
+                            class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
