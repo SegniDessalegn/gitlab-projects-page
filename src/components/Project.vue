@@ -16,7 +16,7 @@
                     </a>
                     <img class="w-4 h-4 m-1" src="../assets/public.png" alt="public">
                 </div>
-                <div class="">{{ discription }}</div>
+                <div>{{ discription }}</div>
             </div>
             <div class="flex flex-col justify-center items-start sm:items-end min-w-fit">
                 <div class="flex flex-row">
@@ -116,7 +116,7 @@ export default {
         getColor() {
             var color = ["bg-"]
             const colors = ["red", "purple", "pink", "green", "blue", "yellow", "indigo", "emerald", "teal", "cyan", "sky", "violet", "fuchsia", "rose"]
-            const scale = ["100/25", "100/50", "100/75"]
+            const scale = ["100/50", "100/75"]
             color.push(colors[parseInt(Math.random() * (colors.length - 1))])
             color.push("-")
             color.push(scale[parseInt(Math.random() * (scale.length - 1))])
