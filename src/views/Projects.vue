@@ -38,7 +38,7 @@
                 <div v-for="project in $store.state.projects" :id="project.id" class="">
                     <Project :nameSpace="project.name_with_namespace" :repoUrl="project.http_url_to_repo"
                         :imgUrl="project.avatar_url" :discription="project.description" :stars="project.star_count"
-                        :forks="project.forks_count" pullRequest="0" issues="0" lastUpdated="Updated just now" />
+                        :forks="project.forks_count" pullRequest="0" issues="0" :lastUpdated="project.last_activity_at" />
                 </div>
             </div>
             <div v-else class="sm:mt-36 mt-20 flex flex-col justify-center items-center">

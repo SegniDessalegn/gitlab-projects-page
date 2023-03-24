@@ -29,7 +29,7 @@
                     <div class="hidden sm:flex flex-row items-center text-sm m-1 cursor-pointer"><img
                             class="w-4 h-4 mx-2 m-1" src="../assets/issues.png" />{{ issues }}</div>
                 </div>
-                <div class="hidden sm:block">{{ lastUpdated }}</div>
+                <div class="hidden sm:block">{{ getLastUpdateTime(lastUpdated) }}</div>
             </div>
         </div>
     </div>
@@ -73,6 +73,43 @@ export default {
             } else {
                 return name.slice(slash_index + 1, name.length)
             }
+        },
+        getLastUpdateTime(time){
+            const createdDate = new Date(time)
+            const timeNow = new Date()
+            if (createdDate.getFullYear() != timeNow.getFullYear()){
+                const gap = timeNow.getFullYear() - createdDate.getFullYear()
+                var interval = gap == 1? "year" : "years"
+                return "updated " + gap + " " + interval + " ago"
+            }
+            else if (createdDate.getMonth() != timeNow.getMonth()){
+                const gap = timeNow.getMonth() - createdDate.getMonth()
+                var interval = gap == 1? "month" : "months"
+                return "updated " + gap + " " + interval + " ago"
+            }
+            else if (createdDate.getDate() != timeNow.getDate()){
+                const gap = timeNow.getDate() - createdDate.getDate()
+                if (gap % 7 > 0){
+                    var interval = gap == 1? "week" : "weeks"
+                }
+                else{
+                    var interval = gap == 1? "day" : "days"
+                }
+                return "updated " + gap + " " + interval + " ago"
+            }
+            else if (createdDate.getHours() != timeNow.getHours()){
+                const gap = timeNow.getHours() - createdDate.getHours()
+                var interval = gap == 1? "hour" : "hours"
+                return "updated " + gap + " " + interval + " ago"
+            }
+            else if (createdDate.getMinutes() != timeNow.getMinutes()){
+                const gap = timeNow.getMinutes() - createdDate.getMinutes()
+                var interval = gap == 1? "minute" : "minutes"
+                return "updated " + gap + " " + interval + " ago"
+            }
+            else{
+                return "updated just now"
+            }
         }
     },
     computed: {
@@ -85,8 +122,6 @@ export default {
             color.push(scale[parseInt(Math.random() * (scale.length - 1))])
             return color.join("")
         },
-
-
     }
 }
 </script>
