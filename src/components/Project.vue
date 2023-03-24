@@ -3,16 +3,16 @@
         <div class="flex-none w-14 h-14 flex items-center m-3 rounded-lg border-2 border-gray-100">
             <a :href="repoUrl"><img v-if="imgUrl" :src="imgUrl"
                     class="w-14 h-14 flex justify-center items-center rounded-lg" />
-                <div v-else class="w-14 h-14 text-2xl text-center flex justify-center items-center rounded-lg" :class="getColor">{{
-                    getCharacter(nameSpace) }}</div>
+                <div v-else class="w-14 h-14 text-2xl text-center flex justify-center items-center rounded-lg"
+                    :class="getColor">{{
+                        getCharacter(nameSpace) }}</div>
             </a>
         </div>
         <div class="flex flex-col sm:flex-row grow justify-start">
             <div class="flex grow flex-col m-1 p-1">
                 <div class="flex flex-start items-center">
-                    <a class="text-base flex hover:underline" :href="repoUrl">
-                        <div>{{ getPath(nameSpace) }}</div>
-                        <div class="font-bold">{{ getName(nameSpace) }}</div>
+                    <a class="text-base hover:underline" :href="repoUrl">
+                        {{ getPath(nameSpace) }}<span class="font-bold">{{ getName(nameSpace) }}</span>
                     </a>
                     <img class="w-4 h-4 m-1" src="../assets/public.png" alt="public">
                 </div>
