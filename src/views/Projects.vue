@@ -20,7 +20,7 @@
                 <div class="w-full flex sm:flex-row flex-col text-sm flex-2 w-3/5">
                     <input
                         class="sm:mr-1 m-0.5 w-full md:ml-28 sm:w-4/5 p-1 border-2 rounded border-gray-300 outline-blue-400 outline-offset-0 focus:outline-offset-2 transition-all duration-50 ease-in-out"
-                        type="text" placeholder="filter by name">
+                        @input="updateName" v-model="filterName" type="text" placeholder="filter by name">
                     <select
                         class="sm:mr-1 m-0.5 w-full sm:w-2/5 p-1 cursor-pointer hover:bg-gray-300/50 border-2 border-gray-300 hover:border-gray-500 rounded">
                         <option disabled selected hidden>Language</option>
@@ -35,7 +35,7 @@
         <div class="sm:mt-5 mt-5 mr-5 text-slate-500 sm:ml-20 ml-0 p-5 sm:p-1"
             :class="[$store.state.SideBarCollapsed ? 'ml-20' : 'lg:ml-72']">
             <div v-if="$store.state.projects.length != 0">
-                <div v-for="project in $store.state.projects" :id="project.id" class="">
+                <div v-for="project in getProjects" :id="project.id" class="">
                     <Project :nameSpace="project.name_with_namespace" :repoUrl="project.http_url_to_repo"
                         :imgUrl="project.avatar_url" :discription="project.description" :stars="project.star_count"
                         :forks="project.forks_count" pullRequest="0" issues="0" :lastUpdated="project.last_activity_at" />
@@ -59,9 +59,19 @@ import SideBar from "../components/SideBar.vue"
 import Project from "../components/Project.vue"
 
 export default {
+    data(){
+        return {
+            filterName: ""
+        }
+    },
     components: { Navigation, SideBar, Project },
     mounted() {
         this.$store.dispatch('GetProjects')
+    },
+    computed:{
+        getProjects(){
+            return this.$store.state.projects.filter(project => project.name_with_namespace.toLowerCase().includes(this.filterName.toLowerCase()))
+        }
     }
 }
 
